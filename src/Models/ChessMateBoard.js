@@ -33,7 +33,7 @@ export default class ChessMateBoard {
     const move = this.chess.move({ from, to });
     if (!move) {
       this.message = "This is not a valid move!";
-      return;
+      return false;
     }
 
     const piece = move.piece;
@@ -41,6 +41,7 @@ export default class ChessMateBoard {
       `${this.playerTurn} moved a ${piece} from ${from} to ${to}`
     );
     this.playerTurn = this.playerTurn === WHITE ? BLACK : WHITE;
+    return true;
   }
 
   inCheck() {
@@ -66,5 +67,9 @@ export default class ChessMateBoard {
       threeFoldRepetition: this.chess.in_threefold_repetition(),
       insufficientMaterial: this.chess.insufficient_material(),
     };
+  }
+
+  getFen() {
+    return this.chess.fen();
   }
 }
