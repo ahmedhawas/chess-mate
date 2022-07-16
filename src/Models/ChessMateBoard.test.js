@@ -33,3 +33,23 @@ test('getMoves returns empty array if no valid moves', () => {
   expect(chessMateBoard.message).toEqual('There are no possible moves for this piece.');
 });
 
+test('makeMove returns message with invalid moves', () => {
+  const chessMateBoard = new ChessMateBoard('player1', 'player');
+
+  expect(chessMateBoard.playerTurn).toEqual('w');
+  
+  chessMateBoard.makeMove('e1', 'e3');
+
+  expect(chessMateBoard.message).toEqual('This is not a valid move!');
+  expect(chessMateBoard.playerTurn).toEqual('w');
+});
+
+test('makeMove makes a move and adds to the history', () => {
+  const chessMateBoard = new ChessMateBoard('player1', 'player2');
+  expect(chessMateBoard.playerTurn).toEqual('w');
+
+  chessMateBoard.makeMove('e2', 'e3');
+  expect(chessMateBoard.playerTurn).toEqual('b');
+  expect(chessMateBoard.history).toEqual(['w moved a p from e2 to e3']);
+});
+
