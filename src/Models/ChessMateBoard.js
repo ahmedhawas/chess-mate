@@ -49,7 +49,7 @@ export default class ChessMateBoard {
     if (inCheck) {
       this.message = `${this.playerTurn} is in check`;
     }
-
+    console.log("in check true or false ", inCheck);
     return inCheck;
   }
 
@@ -60,7 +60,7 @@ export default class ChessMateBoard {
     }
 
     return {
-      gameOver,
+      gameOver: gameOver,
       checkMate: this.chess.in_checkmate(),
       draw: this.chess.in_draw(),
       stalemate: this.chess.in_stalemate(),
